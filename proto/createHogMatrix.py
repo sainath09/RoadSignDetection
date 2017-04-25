@@ -18,7 +18,7 @@ def createHMatrix(a):
     for row in gtReader:
       imageNumber = imageNumber+1
     gtFile.close()	
-    print imageNumber
+  print "Number of Images in all classes:",imageNumber
 # end of finding number of images
 
   twoDHogVals = np.zeros((imageNumber,1569))
@@ -33,7 +33,7 @@ def createHMatrix(a):
       cindex = row[0].split("_")
       cIndex=int(cindex[0])
     gtFile.close()	
-    print classIndex, " " ,cIndex	
+    print classIndex, " Class done!"	
     for c in range(0,cIndex+1):
       for k in range(0,30):
         fileName = HOGfilepath+format(classIndex,'05d')+"/"+format(c,'05d')+"_"+format(k,'05d')+".txt"

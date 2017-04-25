@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-ERR_VIS = True
+ERR_VIS =True
 
 def train_svm(tr_feat_targ, C=2.0, gamma=3.0, iterations=100, model_fpath=""):
   """
@@ -25,7 +25,6 @@ def train_svm(tr_feat_targ, C=2.0, gamma=3.0, iterations=100, model_fpath=""):
   # Predict on training samples
   tr_feat  = tr_feat_targ[:, :-1]
   tr_preds = svm.predict(tr_feat)
-
   return svm, tr_preds
 
 
@@ -78,8 +77,12 @@ def train_test_svm(tr_feat_targ, tst_feat_targ, retrain=True, model_fpath="model
   mean_tr_acc  = tr_acc.sum() / tr_acc.shape[0] * 100   # Mean training accuracy
   mean_tst_acc = tst_acc.sum() / tst_acc.shape[0] * 100 # Mean testing accuracy
   np.savetxt("tr_preds.txt", tr_preds[1], fmt="%.1f")
+  print "Training predictions written to tr_preds.txt"
   np.savetxt("tst_preds.txt", tst_preds[1], fmt="%.1f")
-  print "Training Accuracy: ", mean_tr_acc, "%  Testing Accuracy: ", mean_tst_acc, "% "
+  print "Testing predictions written to tst_preds.txt"
+  print "******calculating training and testing accuracy******"
+  print "Training Accuracy: ", mean_tr_acc
+  print "Testing  Accuracy: ", mean_tst_acc
 
   # Plot errors
   if ERR_VIS:
@@ -88,7 +91,8 @@ def train_test_svm(tr_feat_targ, tst_feat_targ, retrain=True, model_fpath="model
     plt.savefig("results/tr_acc.png") 
     plt.close()
     plt.plot(tst_acc)
-    plt.savefig("results/tst_acc.png") 
+    plt.savefig("results/tst_acc.png")
+    print "testing accuracy written to results/tst_acc.png"
     plt.close()
 
   return mean_tr_acc, mean_tst_acc

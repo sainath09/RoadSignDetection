@@ -5,15 +5,10 @@ import proto.createHogMatrix as hm
 
 
 if __name__=="__main__":
-  a=range(0,43)
-  print a
-  twoDTrainHogVals = np.zeros((1,1569))
-  twoDTestHogVals = np.zeros((1,1569))
+  #a=range(0,43)
+  a=[0,1,2]
   twoDHogVals = hm.createHMatrix(a)
-  i=0	
   twoDHogVals = twoDHogVals.astype(np.float32)
-  twoDTrainHogVals = twoDTrainHogVals.astype(np.float32)
-  twoDTestHogVals = twoDTestHogVals.astype(np.float32)
   list_2r =[]
   list_1r =[]
   i2 = 0
@@ -26,7 +21,6 @@ if __name__=="__main__":
     list_1r.append(twoDHogVals[i1,:])
     i2=i2+3
     i1=i1+3
-  print i1
   mat_2r = np.array(list_2r)
   mat_1r = np.array(list_1r)
   print mat_2r.shape, mat_1r.shape
